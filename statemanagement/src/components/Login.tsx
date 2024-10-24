@@ -1,20 +1,23 @@
-import { useReducer } from 'react';
+import { useReducer, useState } from 'react';
 import loginReducer from '../reducers/loginReducer';
 
 const Login = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [username, dispatch] = useReducer(loginReducer, ""); 
 
   // Handle login
   const handleLogin = () => {
+    setIsLoggedIn(true)
     dispatch({ type: "LOGIN", username: "Tony"});
   };
 
   // Handle logout
   const handleLogout = () => {
+    setIsLoggedIn(false)
     dispatch({ type: "LOGOUT" });
   };
 
-  const isLoggedIn = username !== ""; 
+
 
   return (
     <div className="container mt-5">
